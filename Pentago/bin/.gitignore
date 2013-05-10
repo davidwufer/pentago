@@ -1,0 +1,15 @@
+/search
+/solver
+/transposition
+/util
+/endgamesolver
+/game
+/gamestatecalculator
+/gamevalue
+/hash
+/heuristic
+/move
+/movecomparator
+/board
+/config
+/testrunner

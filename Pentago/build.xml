@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="pentago">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="pentago.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="../../Programming/eclipse/junit/junit4.9b2/junit-4.9b2.jar"/>
+        <pathelement location="../../Programming/eclipse/mockito/mockito-all-1.9.0-rc1.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="pentago.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="test"/>
+            <classpath refid="pentago.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name=".hookAfterStage2">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesTest.1" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testAlphaBetaOnBoardLosingAfterTwoDepths">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testAlphaBetaOnFourByFourBlankBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testAlphaBetaOnImmediatelyWinningBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testAlphaBetaOnWinningBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testDeepPruningFromReader">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testLossesOneDepth">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testNoPruningFromReader">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testOneChildExample">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testOneChildOneDepthExample">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testOneMoveOneDepthExample">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testReaderExample">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testTwoMovesOneDepthExample">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="AlphaBetaRecursiveTest.testWinLossDrawOneDepth">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="search.AlphaBetaRecursiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardHashSetTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="hash.BoardHashSetTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardHashSetTest.testContains">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="hash.BoardHashSetTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardHashSetTest.testContainsBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="hash.BoardHashSetTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardHashSetTest.testHashSetContains">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="hash.BoardHashSetTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="board.BoardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardTest.testBoardEqualsSixBySixBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="board.BoardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardTest.testCopyBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="board.BoardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardTest.testCreatingABoardMatchesCharArray">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="board.BoardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardTest.testGettingWaitingPlayerPiece">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="board.BoardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.testGameStateHorizontalOWinAtTopOfBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GameTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameTest.testDoMoveWithSubBoardZero">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GameTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameTest.testGetMaxNumChildrenWithBlankBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GameTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameValueTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="gamevalue.GameValueTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameValueTest.testDraw">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="gamevalue.GameValueTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameValueTest.testLoss">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="gamevalue.GameValueTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameValueTest.testUndetermined">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="gamevalue.GameValueTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GameValueTest.testWin">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="gamevalue.GameValueTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest.testGenerateMovesForFullFourByFourBoardWithImmediateTerminalAndNonImmediateTerminalAndNoSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest.testGenerateMovesForFullFourByFourBoardWithImmediateTerminalAndNonImmediateTerminalAndSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest.testGenerateMovesForFullFourByFourBoardWithImmediateTerminalAndNonImmediateTerminalAndSymmetriesInLateGame">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest.testGenerateMovesForSixBySixBoardWithFilledDraw">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest.testGenerateMovesForSixBySixBoardWithSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesMetricTest.testGenerateMovesForSixBySixMidGameBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testGenerateMovesForEmptyFourByFourBoardWithSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testGenerateMovesForEmptySixBySixBoardWithSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testGenerateMovesForFullFourByFourBoardWithImmediateTerminalAndNonImmediateTerminalAndNoSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testGenerateMovesForFullFourByFourBoardWithImmediateTerminalAndNonImmediateTerminalAndSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testGenerateMovesForFullFourByFourBoardWithImmediateTerminalAndNonImmediateTerminalAndSymmetriesInLateGame">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testImmediateTerminalPossible">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testImmediateTerminalWinImmediatelyReturns">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testIsImmediateTerminalPossible">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedTest.testNonImmediateTerminalWinImmediatelyReturns">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedVsMetricTest.compareMoveResults">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedVsMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedVsMetricTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedVsMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedVsMetricTest.testABunchOfBoardsAgainstEachOther">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedVsMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesOptimizedVsMetricTest.testEmptyFourByFourBoardWithSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesOptimizedVsMetricTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesStandardTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesStandardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesStandardTest.testGenerateMovesForEmptyFourByFourBoardWithSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesStandardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="GenerateMovesStandardTest.testGenerateMovesForEmptySixBySixBoardWithSymmetries">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="game.GenerateMovesStandardTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="HashMapTranspositionTableTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.HashMapTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="HashMapTranspositionTableTest.testAddAndContains">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.HashMapTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="HashMapTranspositionTableTest.testAddShouldOnlyWorkForTerminalValues">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.HashMapTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="HashMapTranspositionTableTest.testIsSymmetryForSixBySixBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.HashMapTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="MoveComparatorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="movecomparator.MoveComparatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="MoveComparatorTest.testUndeterminedVsDraw">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="movecomparator.MoveComparatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="MoveFactoryTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="move.MoveFactoryTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="MoveFactoryTest.testVariablesInitializedCorrectly">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="move.MoveFactoryTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="PieceTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="board.PieceTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLinesAndLayersWithOStrongerBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLinesAndLayersWithXOnlyBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLinesAndLayersWithXStrongerBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowPerSubBoardForBlankSubBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowPerSubBoardForSubBoardWithFourLShapes">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowPerSubBoardForSubBoardWithNoLShapeOrThreeInARow">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowPerSubBoardForSubBoardWithThreeInARowForCurrentPlayer">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowPerSubBoardForSubBoardWithThreeInARowForOpponent">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowPerSubBoardForSubBoardWithTwoThreeInARows">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowWithBlankBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowWithOStrongerBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testLShapeAndThreeInARowWithZeroValueBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testPreventDrawConflict">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testPreventDrawConflictWithDraw">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SixBySixHeuristicCalculatorTest.testTotalHeuristic">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="heuristic.SixBySixHeuristicCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="Solve">
+        <java classname="solver.PentagoSolver" failonerror="true" fork="yes">
+            <classpath refid="pentago.classpath"/>
+        </java>
+    </target>
+    <target name="SymmetryCheckerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="hash.SymmetryCheckerTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="SymmetryCheckerTest.testIsSymmetryForSixBySixBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="hash.SymmetryCheckerTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.creationOfTT">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.insertIntoFirstLevelAfterCreation">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.insertTwoThingsWithSecondGoingToSecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testContainsFirstLevelWhenThereIsASecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testContainsFirstLevelWhenThereIsNoFirstLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testContainsFirstLevelWhenThereIsNoSecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testContainsSecondLevelWhenThereIsASecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testContainsSecondLevelWhenThereIsNoSecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testContainWithDifferentBoardObjects">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testCreationOfTT">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testDoesNotContainEvenWhenBothLevelsAreThere">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testInsertIntoFirstLevelAfterCreation">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testInsertThreeThingsAndBootFirstOneToSecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testInsertThreeThingsAndBootSecondOneOut">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testInsertTwoThingsWithSecondGoingToFirstLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierElementTest.testInsertTwoThingsWithSecondGoingToSecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierElementTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierTranspositionTableTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierTranspositionTableTest.testAddAndContainsEndToEnd">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierTranspositionTableTest.testCreateTranspositionTable">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierTranspositionTableTest.testMaxTTSize">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="TwoTierTranspositionTableTest.testSymmetriesInFirstAndSecondLevel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="transposition.TwoTierTranspositionTableTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="WinDrawHeuristicLossComparatorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="movecomparator.WinDrawHeuristicLossComparatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="pentago.classpath"/>
+        </junit>
+    </target>
+    <target name="MemoryExhauster">
+        <java classname="util.MemoryExhauster" failonerror="true" fork="yes">
+            <classpath refid="pentago.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

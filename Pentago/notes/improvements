@@ -1,0 +1,17 @@
+1. The comparator right now is Win, Heuristics, Draw, and Loss. Win, Draw, Heuristics, and Loss could be better because Draw will establish an upper-bound on the searches.
+
+
+Try to implement naive minimax and compare an alpha beta result against it
+Check resultingGameValue to see if it works properly with minimax, and rename resultingGameValue if needed
+Try a more filled 4x4 board and see if it is really returning the right result.
+Look at reverse deep pruning
+Check the optimizations..
+
+
+
+Implement Heuristic Calculator
+Benchmark Code to find places to optimize
+Fix Move's compareTo and how it relates to the MoveComparator's compareTo
+
+
+Try iterating row-wise instead of column-wise, as this should yield better performance.

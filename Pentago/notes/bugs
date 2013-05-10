@@ -1,0 +1,12 @@
+1. GameState has the wrong ordering of conditionals. There's a negative segfault in one of the conditionals that is never detected because it reads into a local variable instead of into the array.
+2. GenerateMoves does NOT add moves that result in a terminal value to the final moves list!
+			//We already know this move is a winning move, so add it and continue
+	    	if (GameValue.isTerminalValue(currMove.getResultingGameValue())) {
+    			uniqueMoves[numMoves] = MoveFactory.createMove(currMove.getIndex(),
+						   currMove.getSubBoard(),
+						   currMove.getIsClockwise(),
+						   currMove.getResultingGameValue());
+    			numMoves += 1;
+    			continue;
+	    	}
+3. GenerateMoves should only terminate subBoard 0 if it is a WIN
