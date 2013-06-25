@@ -4,8 +4,8 @@ import heuristic.FiveByFiveHeuristicCalculator;
 import heuristic.HeuristicCalculator;
 
 public class FiveByFiveBoard extends AbstractBoard {
-	final static private String blankFiveByFiveBoard = "[                         ]";
-	final static private String fiveByFiveBorder =    "  +---------------+\n";
+	final static private String BLANK_FIVE_BY_FIVE_BOARD = "[                         ]";
+	final static private String FIVE_BY_FIVE_BORDER =    "  +---------------+\n";
 	
 	final static protected int WIDTH  = 5;
 	final static protected int HEIGHT = 5;
@@ -13,7 +13,7 @@ public class FiveByFiveBoard extends AbstractBoard {
 	final static public int NUMBER_OF_SPOTS_ON_BOARD = WIDTH * HEIGHT;
 	
 	protected FiveByFiveBoard () {
-		super(blankFiveByFiveBoard);	
+		super(BLANK_FIVE_BY_FIVE_BOARD);	
 	}
 	
 	protected FiveByFiveBoard(String boardConfiguration) {
@@ -89,5 +89,20 @@ public class FiveByFiveBoard extends AbstractBoard {
 	    }
 
 	    return builder.append(border).toString();
+	}
+
+	@Override
+	String getPrintBorder() {
+		return FIVE_BY_FIVE_BORDER;
+	}
+
+	@Override
+	public BoardBuilder getBoardBuilder() {
+		return new BoardBuilder() {
+			@Override
+			public Board build() {
+				return new FiveByFiveBoard(getBoardArray(), getPiecesOnBoard());
+			}
+		};
 	}
 }

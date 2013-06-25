@@ -92,19 +92,13 @@ public abstract class AbstractBoard implements Board {
 	}
 	
 	@Override
-	public int getDimension() {
-		throw new UnsupportedOperationException("This needs to be overriden.");
-	}
+	public abstract int getDimension();
 	
 	@Override
-	public int getNInARow() {
-		throw new UnsupportedOperationException("This needs to be overriden.");
-	}
+	public abstract int getNInARow();
 	
 	@Override
-	public int getNumberOfSpotsOnBoard() {
-		throw new UnsupportedOperationException("This needs to be overriden.");
-	}
+	public abstract int getNumberOfSpotsOnBoard();
 	
 	@Override
 	public Piece getPieceAt(int index) {
@@ -144,9 +138,7 @@ public abstract class AbstractBoard implements Board {
 	}
 	
 	@Override
-	public BoardBuilder getBoardBuilder() {
-		throw new UnsupportedOperationException("You must override this method.");
-	}
+	public abstract BoardBuilder getBoardBuilder();
 	
 	@Override
 	// TODO: OPTIMIZE THIS to use a builder or something!
@@ -190,10 +182,6 @@ public abstract class AbstractBoard implements Board {
 	public Board placePieceAt(int index, Piece pieceToPlace) {
 		final BoardArray newBoardArray = boardArray.placePieceAt(index, pieceToPlace);
 		return getBoardBuilder().setBoardArray(newBoardArray).setPiecesOnBoard(piecesOnBoard).build();
-	}
-	
-	protected BoardArrayBuilder getBoardArrayBuilder() {
-		throw new UnsupportedOperationException("Subclasses need to override this method");
 	}
 	
 	/* Could maybe be optimized as well for the boardArray version */
@@ -284,9 +272,7 @@ public abstract class AbstractBoard implements Board {
 		return getBoardBuilder().setBoardArray(boardArray).setPiecesOnBoard(newPiecesOnBoard).build();
 	}
 	
-	String getPrintBorder() {
-		throw new UnsupportedOperationException("You must override this");
-	}
+	abstract String getPrintBorder();
 	
 	@Override
 	public GameValue getGameState() {

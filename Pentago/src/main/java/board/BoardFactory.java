@@ -6,6 +6,14 @@ public class BoardFactory {
 	
 	private BoardFactory() {}
 	
+	public static Board createFiveByFiveBoard() {
+		return new FiveByFiveBoard();
+	}
+	
+	public static Board createFiveByFiveBoard(String boardConfiguration) {
+		return new FiveByFiveBoard(boardConfiguration);
+	}
+	
 	public static Board createSixBySixBoardBlank() {
 		return new SixBySixBoard();
 	}

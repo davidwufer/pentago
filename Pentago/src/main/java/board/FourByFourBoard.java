@@ -4,8 +4,8 @@ import heuristic.FourByFourBoardHeuristicCalculator;
 import heuristic.HeuristicCalculator;
 
 public class FourByFourBoard extends AbstractBoard {
-	final static private String blankFourByFourBoard = "[                ]";
-	final static private String fourByFourBorder =    "  +------+------+\n";
+	final static private String BLANK_FOUR_BY_FOUR_BOARD = "[                ]";
+	final static private String FOUR_BY_FOUR_BORDER =    "  +------+------+\n";
 	
 	final static protected int WIDTH = 4;
 	final static protected int HEIGHT = 4;
@@ -13,7 +13,7 @@ public class FourByFourBoard extends AbstractBoard {
 	final static public int NUMBER_OF_SPOTS_ON_BOARD = WIDTH * HEIGHT;
 	
 	protected FourByFourBoard() {
-		super(blankFourByFourBoard);
+		super(BLANK_FOUR_BY_FOUR_BOARD);
 	}
 	
 	protected FourByFourBoard(String boardConfiguration) {
@@ -46,7 +46,7 @@ public class FourByFourBoard extends AbstractBoard {
 	
 	@Override
 	String getPrintBorder() {
-		return fourByFourBorder;
+		return FOUR_BY_FOUR_BORDER;
 	}
 	
 	@Override

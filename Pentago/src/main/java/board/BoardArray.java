@@ -133,6 +133,10 @@ public class BoardArray {
 			return this;
 		}
 		
+		// A hacky way of doing: ceiling(boardDimension / 2)
+		// We need this change to support the 5x5 board
+		final int subBoardWidth = (boardDimension + 1) / 2;
+		
 		final int boardSubSectionWidth = boardDimension / 2;
 		int colShift, rowShift;
 		switch (subBoard) {
@@ -144,9 +148,9 @@ public class BoardArray {
 		}
 		
 		if (isClockWise) {
-			return rotateSubSectionNinetyDegreesClockwise(boardDimension, boardSubSectionWidth, colShift, rowShift);
+			return rotateSubSectionNinetyDegreesClockwise(boardDimension, subBoardWidth, colShift, rowShift);
 		} else {
-			return rotateSubSectionNinetyDegreesCounterClockwise(boardDimension, boardSubSectionWidth, colShift, rowShift);
+			return rotateSubSectionNinetyDegreesCounterClockwise(boardDimension, subBoardWidth, colShift, rowShift);
 		}
 		
 	}
